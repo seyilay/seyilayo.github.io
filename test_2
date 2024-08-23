@@ -1,0 +1,17 @@
+user_input = 'edit sis what'
+editted_item = user_input[5:]
+editted_item = editted_item.strip('')
+print (editted_item)
+lis = ['I am getting a type error','bro','newwer','sis what']
+for itemi in lis:
+    if itemi == editted_item:
+        print(f'{itemi} is in the list') 
+        break
+    else:
+        print('Not sure what is going on')
+        
+        
+if (editted_item == lis):
+    print('finally')
+else: 
+    print('wrong')

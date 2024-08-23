@@ -1,0 +1,74 @@
+#I want to create a to-do app. What features would it need? 
+# 1. Start with thinking about the output? - 
+# a) A list of thing that need to be done 
+# b) the status & Next steps - red (NOT STARTED)/amber (IN PROGRESS) /green (ALMOST DONE IN TIME)/ blue(COMPLETED)
+# c) the description of the item
+# d) it's importance
+# e) urgency & delivery date
+# where do we save the to-do list, apart from in the RAM.
+# Other features that aren't priority - Overarching workstream for each item (like grouping items)/ recurring to-dos that could be set on a weekly basis/ dragging items to top 
+
+user_prompt='Type to add, edit, show, complete or exit list'
+to_do=[]
+
+while True: 
+    user_inp=(input(user_prompt))
+    user_inp = user_inp.strip()
+    user_inp= user_inp.lower()
+    match user_inp: 
+        #adds a new action to the to-do list
+        case 'add':
+            new_inp = input('Enter a todo: ')+'\n'
+            with open ('to_dos.txt', 'r') as file:
+                to_dos = file.readlines()
+            to_dos.append(new_inp)
+            with open ('to_dos.txt','a') as file:
+                file.writelines(new_inp)
+        #prints out the to-do list in a numbered format
+        case 'show':
+            with open ('to_dos.txt', 'r') as file:
+                to_dos = file.readlines()
+            for index,i in enumerate(to_dos):
+                i= i.strip("\n")
+                index= index+1 #increasing the list number to initalise from 0 to 1
+                user_list= f"{index}. {i}"
+                print(user_list)
+        #a feature to improve the mutability of the to-do do list. It has error handling
+        case 'edit':    
+            try:
+                edit_list = int(input('What list item do you want to edit'))
+                edit_list -=1
+                new_list = input('Type new list item:') #getting the user input on what they want to replace with
+                with open('to_dos.txt','r') as file:
+                    data = file.readlines() #reading the lines of the file into a variable - with a list type
+                    data[edit_list] = new_list+'\n'
+                #new_data = data.replace (edit_data,new_list) // not sure why this line doesn't work 
+                
+                with open('to_dos.txt', 'w') as file:
+                    file.writelines(data)
+                
+            except ValueError:
+                print("Oops!  That was no valid number.  Try again...")
+                break
+            print(to_do)
+        #a feauture intended to remove complete items from the to-do list
+        case 'complete':
+            complete_list = int(input('What list item have you finished?'))
+            complete_list = complete_list - 1
+            with open('to_dos.txt','r') as file:
+                data = file.readlines()
+            
+            data.pop(complete_list)    
+            with open('to_dos.txt', 'w') as file:
+                file.writelines(data)
+            #print(to_do)
+            #print(user_list)
+        case 'exit':
+            break
+        case _:
+            print('Unknown command')
+
+    
+         
+     #user_inp.capitalize
+     #to_do.append(to_do_inp)

@@ -1,0 +1,8 @@
+ips = ['100.122.133.105', '100.122.133.111']
+user= int(input("Enter either 0 or 1: "))
+print(user)
+choice = ips[user]
+
+while True:
+    print(f"You chose {choice}")
+    break

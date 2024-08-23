@@ -1,0 +1,7 @@
+filenames = ['doc.txt', 'report.txt', 'presentation.txt']
+salute = "Hello"
+
+for filename in filenames:
+    file = open (filename, "w")
+    file.write(salute)
+    file.close()

@@ -1,0 +1,24 @@
+#def get_todos(filepath):
+    #with open (filepath, 'r') as file:
+    #    to_dos_local = file.readlines()
+    #return (to_dos_local)
+
+
+#edited_item = int(input('What list item do you want to edit'))
+#edited_item -=1
+#new_list = input('Type new list item:') #getting the user input on what they want to replace with
+
+#edit_to_dos = get_todos('to_dos.txt')
+#edit_to_dos[edited_item] = new_list+'\n'
+#print(edit_to_dos)
+
+#with open('to_dos.txt','r') as file:
+#    data = file.readlines() #reading the lines of the file into a variable - with a list type
+#    data[editted_item] = new_list+'\n'
+
+
+num_checker = True
+len_checker = True
+cap_check = True
+checker = [num_checker,len_checker,cap_check]
+print(checker)

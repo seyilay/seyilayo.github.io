@@ -9,8 +9,10 @@
 # Other features that aren't priority - Overarching workstream for each item (like grouping items)/ recurring to-dos that could be set on a weekly basis/ dragging items to top 
 from functions import get_todos,write_todos
 import FreeSimpleGUI as simp
+import time
 
-
+simp.theme('DarkTeal12')
+clock = simp.Text('',key='clock')
 label = simp.Text('Type in a to-do')
 input_box = simp.InputText(tooltip='Enter to-do', key='todo')
 list_box = simp.Listbox(values = get_todos('to_dos.txt'), key='to-dolist', enable_events=True, size=[50,10])
@@ -19,13 +21,14 @@ edit_button = simp.Button('Edit')
 complete_button = simp.Button('Complete')
 exit_button = simp.Button('Exit')
 window = simp.Window('Seyilayo To-do App', 
-            layout= [[label], [input_box, add_button], [list_box,complete_button, edit_button],
+            layout= [[clock],[label], [input_box, add_button], [list_box,complete_button, edit_button],
                         [exit_button]],
                     font= ('Helvetica', 20))
 
 
 while True: 
-    event,values = window.read()
+    event,values = window.read(timeout= 1000)
+    window['clock'].update(value=time.strftime('%b %Y , %H:%M:%S'))
     print(event)
     print(values)
     match event:
@@ -87,7 +90,7 @@ while True:
                 w_edit_to_dos = write_todos('to_dos.txt',complete_to_dos)
                 window['to-dolist'].update(values=complete_to_dos)
             except IndexError:
-                print('Oops!...This number is not in the list.')
+                simp.popup('Oops!...This number is not in the list.', font= ('Helvetica',16))
             #print(to_do)
             #print(user_list)
         case ('Exit'):

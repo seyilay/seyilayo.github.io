@@ -1,1 +1,32 @@
 #zip_file_gui
+import FreeSimpleGUI as simp
+
+label1 = simp.Text('Choose the files to compress')
+label2 = simp.Text('Choose the destination of the zip')
+
+input1 = simp.Input()
+input2 = simp.Input()
+
+button1 = simp.FilesBrowse('Choose the files')
+button2 = simp.FolderBrowse('Choose the destination')
+button3 = simp.Button('Compress')
+
+window = simp.Window('File Compression App', layout= [[label1,input1,button1], [label2,input2,button2],[button3]])
+while True:
+    event, values = window.read()
+    print(event,values)
+    print(event)
+    print(values)
+    match event:
+        case 'Compress':
+            #split the files to be compressed
+            value= values['Choose the files'].split(';')
+            print(value)
+            #add them and save as a .zip file
+            #take file path of destination 
+            dest = values['Choose the destination']
+            print(dest)
+            #save the .zip file in destination folder
+        case simp.WIN_CLOSED:
+            break
+window.close() 

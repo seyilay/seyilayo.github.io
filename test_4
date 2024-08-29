@@ -1,0 +1,17 @@
+import FreeSimpleGUI as simp
+
+
+label = simp.Text('Type in a to-do')
+input_box = simp.InputText(tooltip='Enter to-do', key='todo')
+add_button = simp.Button('Add')
+edit_button = simp.Button('Edit')
+complete_button = simp.Button('Complete')
+exit_button = simp.Button('Exit')
+window = simp.Window('Seyilayo To-do App', 
+                    layout= [[label], [input_box, add_button]], 
+                    font= ('Helvetica', 20))
+
+event,values = window.read()
+print(window.read())
+print(event)
+print(values)
